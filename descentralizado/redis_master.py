@@ -12,7 +12,7 @@ if __name__ == "__main__":
     queue_jobs = Queue('my_queue', connection=redis_conn)
     jobs = []
 
-    linhas, colunas = 2, 2
+    linhas, colunas = 10,10
 
     print("{}: Gerando matrizes no master".format(time.strftime('%c')))
     matrizA = cria_matriz(linhas, colunas)
@@ -26,9 +26,11 @@ if __name__ == "__main__":
     queue = multiprocessing.JoinableQueue()
     print("{}: Multiplicando matrizes".format(time.strftime('%c')))
 
+    column = numpy.array(matrizB)
+
     for i in range(len(matrizA)):
         for j in range(len(matrizA[0])):
-            job = queue_jobs.enqueue(multiplica_linha_coluna, matrizA[i], matrizB, i, j)
+            job = queue_jobs.enqueue(multiplica_linha_coluna, matrizA[i], column[:, j], i, j)
             jobs.append(job)
 
     for job in jobs:
