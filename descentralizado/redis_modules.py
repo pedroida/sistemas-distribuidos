@@ -14,5 +14,5 @@ def cria_matriz(linhas, colunas):
 def multiplica_linha_coluna(matrizA, matrizB, i, j):
     valor = 0
     for k in range(len(matrizB)):
-        valor = valor + matrizA[i][k] * matrizB[k][j]
+        valor = valor + matrizA[k] * matrizB[k][j]
     return i, j, valor

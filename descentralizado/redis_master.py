@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     for i in range(len(matrizA)):
         for j in range(len(matrizA[0])):
-            job = queue_jobs.enqueue(multiplica_linha_coluna, matrizA, matrizB, i, j)
+            job = queue_jobs.enqueue(multiplica_linha_coluna, matrizA[i], matrizB, i, j)
             jobs.append(job)
 
     for job in jobs:
